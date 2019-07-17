@@ -1,0 +1,13 @@
+variable hoisting
+let vs var
+let, const -> block scope
+
+
+
+temporal dead zone ? 
+https://codeburst.io/explaining-value-vs-reference-in-javascript-647a975e12a0
+
+https://stackoverflow.com/questions/33198849/what-is-the-temporal-dead-zone
+
+The TDZ also applies to default function arguments. Arguments are evaluated left to right, and each argument is in the TDZ until it is assigned:
+

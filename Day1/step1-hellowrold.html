@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Doc</title>
+        <script>
+            window.onload = init1;
+            window.addEventListener('load', init2);
+            document.addEventListener('DOMContentLoaded', init3); // whenever DOM is loaded it will trigger the DOMContentLoaded event
+            function init1(){
+                document.getElementsByTagName('h1').textContent = "Hello World"
+                console.dir('1');
+            }
+            function init2(){
+                console.dir('2');
+            }
+            function init3(){
+                console.dir('3');
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Temp1</h1>
+    </body>
+</html>

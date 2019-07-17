@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hands-on</title>
+</head>
+<body>
+    <script>
+        //TDZ
+        
+            // console.dir(temp1);
+            // console.dir(temp);
+            // let temp = 'dragons';
+            // var temp1 = 'wizards';
+            // console.log(temp);
+            // console.log(temp1);
+        
+        let cart= {
+            getCostPrice: function(){
+                return 100;
+            },
+            // getSellingPrice:  function(){
+            //     function calculateProfit(){
+            //         return this.getCostPrice() * 0.2;
+            //     };
+            //     // call and apply will set the context and execute the function
+            //     // bind will only set the content, you need to execute the function
+            //     return calculateProfit.call(this) + this.getCostPrice();
+            //     //return calculateProfit.bind(this)() + this.getCostPrice();
+            // }
+            getSellingPrice:  function(){
+                // iife - pass the scope 'this'
+                // let calculateProfit = (function (temp){
+                //     return temp.getCostPrice() * 0.2;
+                // })(this);
+                return (function (temp){
+                    return temp.getCostPrice() * 0.2;
+                })(this) + this.getCostPrice();
+            }
+        }
+        console.log(cart.getSellingPrice());
+        
+        var powers = [5,1,4,8,22,17,12,90];
+        function sortArr(num1, num2){
+            if(num1 > num2){
+                return 1
+            }else if(num1 < num2){
+                return -1
+            }else{
+                return 0
+            }
+        }
+        console.dir(powers.sort(sortArr));
+        console.dir(powers.sort((a, b) => a -b));
+        //forEach (return individual values)
+        //map (return array)
+        //filter
+        //reduce
+    </script>
+</body>
+</html>
