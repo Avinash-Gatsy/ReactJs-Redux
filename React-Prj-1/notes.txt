@@ -1,0 +1,148 @@
+-- install react --
+D:\ReactJs_Redux>npm install -g create-react-app
+
+$ create-react-app -V
+
+--create a new react app --
+$ create-react-app firstapp
+
+react runs in port 3000 by default
+
+
+"react" -> to create elements, context, factory...
+"react-dom" -> render the elements
+"react-scripts"
+
+create nested elements -> React
+    const heroes = ['Superman', 'Batman', 'Ironman', 'Spiderman', 'Antman'];
+    let elm = React.createElement('ol',null, heroes.map((val, i, arr)=>{
+        return React.createElement('li',{key:i},val) 
+    }));
+
+ReactDom
+    ReactDom.render(elm, document.getElementById('root')); //render the elm in <div id="root"></div> -> index.html (webpack will map this index.js to index.html)
+
+
+JSX
+    const heroes = ['Superman', 'Batman', 'Ironman', 'Spiderman', 'Antman'];
+
+    let elm = 
+        <div>
+            <h1>Heroes List</h1>
+            <ol>
+                <li>{heroes[0]}</li>
+                <li>{heroes[1]}</li>
+                <li>{heroes[2]}</li>
+                <li>{heroes[3]}</li>
+                <li>{heroes[4]}</li>
+            </ol>
+        </div>
+
+-> anything inside the {} will be executed as javascript
+
+    let elm = 
+        <div>
+            <h1>Heroes List</h1>
+            <ol>
+                { heroes.map( (val, i) => {
+                    return <li key={i}>{val}</li>
+                })}
+            </ol>
+        </div>
+
+<div> -> React.createElement will create only one html elm, so h1 and ol will not be created simultaneously
+hence we use div as a wrapper
+
+but we dont need to exlicitly use a <div></div> 
+instead <></> or <React.Fragment></React.Fragment> can be used a wrapper
+
+###### React Components ######
+
+    import React, {Component} from 'react';
+
+    const heroes = ['Superman', 'Batman', 'Ironman', 'Spiderman', 'Antman'];
+
+    class MainComponent extends Component{
+        render(){
+            return <React.Fragment>
+                    <h1>Heroes List</h1>
+                    <ol>
+                        {heroes.map((val, i) => {
+                            return <li key={i}>{val}</li>
+                        })}
+                    </ol>
+                </React.Fragment>
+        }
+    }
+    ReactDom.render(<MainComponent/>, document.getElementById('root')); //render the elm or comp in <div id="root"></div> -> index.html (webpack will map this index.js to index.html)
+
+component are classes in React
+render(){} in the component will return the JSX template
+pass </MainComponent> to ReactDom.render()
+
+elements -> component, components -> composition
+
+##### COMPOSITION #####
+
+    class MainComponent extends Component{
+        render(){
+            return <React.Fragment>
+                    <HeaderComponent/>
+                    <HeroListComponent/>
+                </React.Fragment>
+        }
+    }
+
+##### react props #####
+props -> pass data from one comp to another
+
+    class MainComponent extends Component{
+        render(){
+            return <React.Fragment>
+                    <HeaderComponent title={this.props.title}/> // title is passed with the MainComponent in ReactDom.render()
+                    <HeroListComponent heroes={heroes}/>
+                </React.Fragment>
+        }
+    }
+    ReactDom.render(<MainComponent title="Heroes List"/>, document.getElementById('root')); //render the elm or comp in <div id="root"></div> -> index.html (webpack will map this index.js to index.html)
+
+##### react port change #####
+node_modules/react-scripts/scripts/start.js
+
+##### inline style in react #####
+ -> style={{ textTransform: 'capitalize', color: 'red' }}
+    export default class ListComponent extends Component {
+        render(){
+            return (<>
+                <ol>
+                    {this.props.list.map((val, i)=>{
+                        return <li key={i} style={{ textTransform: 'capitalize', color: 'red' }}>{val}</li>
+                    })}
+                </ol>
+            </>)
+        }
+    }
+wrap the return statement inside () to avoid errors due to enter, white space etc.
+all the JSX inside () will be considered same.
+
+##### external styles #####
+add a css file and import the css file in the component (jsx)
+    <div className="box" key={i}>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,33 @@
+body{
+    font-family: 'Trebuchet MS'; 
+}
+.box {
+    width: 200px;
+    background-color: rgb(196, 232, 247);
+    border: 1px solid rgb(74, 121, 250);
+    margin: 5px;
+    float: left;
+}
+
+.box img {
+    max-width: 200px;
+}
+
+.box h1, h2 {
+    margin: 0px;
+    text-align: center;
+}
+.poster-container{
+    display: flex;
+    padding: 10px;
+}
+.poster-container img{
+    max-width: 75px;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+.poster-container span{
+    width: 50%;
+    align-items: center;
+    display: inline-flex;
+}
