@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
-import MovieListComponent from './movielist.component';
+import ItemComponent from './item.component';
+
 export default class ListComponent extends Component {
+    disableHero(val){
+        console.dir(val);
+    }
     render(){
         // return (<>
         //     <ol>
@@ -10,20 +14,8 @@ export default class ListComponent extends Component {
         //     </ol>
         // </>)
         return (
-
             this.props.list.map((val, i)=>{
-                return (<div className="box" key={i}>
-                    <h1>{val.title}</h1>
-                    <img src={val.poster} alt={val.poster}></img>
-                    <h2>{val.firstname}{' '}{val.lastname}</h2>
-                    <p>
-                        City: <span>{val.city}</span><br/>
-                        Release Date: <span>{val.releasedate}</span><br/>
-                        Ticket Price: <span>{val.ticketprice}</span>
-                    </p>
-                    <hr/>
-                    <MovieListComponent movies={val.movieslist}/>
-                    </div>)
+                return (<ItemComponent key={i} itemData={val} disableHeroHandler={this.disableHero.bind(this, val)}/>)
             })
         )
     }

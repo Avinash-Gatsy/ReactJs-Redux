@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Object</title>
+    <script>
+        var obj1 = {};
+        var obj2 = new Object();
+        //create immutable objects using Object.defineProperty and Object.defineProperties
+        //enumerable = true will expose the props of the obj
+        var obj3 = Object.defineProperty(obj1, 'title', {
+            value : 'ironman',
+            writable: true,
+            enumerable: true,
+            configurable: true // unless this is true, the configurations cannot be altered
+        });
+        console.dir(obj3.title); //ironman
+        obj3.title = "joker"; // since writable is true - we can modify the values
+        console.dir(obj3.title); //joker
+        for(prop in obj3){
+            console.dir(prop); // since enumerable = true, prop will be logged
+        }
+        console.dir(Object.keys(obj3));
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

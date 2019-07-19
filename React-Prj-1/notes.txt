@@ -129,20 +129,132 @@ all the JSX inside () will be considered same.
 add a css file and import the css file in the component (jsx)
     <div className="box" key={i}>
 
+******************************************************************************************************
+##### PROPS ##### (step1-props)
+
+we can even use functions to create a react component, it uses lesser memory.
+unlike class to extend Component and return HTML in the render(){}, we can simply create a function and use that as react comp
+if you want to send data, pass through the props
+in case of class extended from component it will have access to the props obj, 
+but in case of function we need to pass through thh function explicitly
+
+    function FirstComponent(props){
+        return (<h1>Working {props.message}</h1>);
+    }
+    export default FirstComponent;
+
+    ReactDOM.render(<FirstComponent message="React App"/>, document.getElementById('root'));
+
+Data will be sent from parent to child as attributes in the HTML and can be accessed using props obj.
+We can also pass inline HTML from parent and access that using {this.props.children} in the child
+
+    ReactDOM.render(<FirstComponent message="React App"><span>Woah! this is a inline HTML from parent</span></FirstComponent>, document.getElementById('root'));
+    function FirstComponent(props){
+        return (<><h1>Working {props.message}</h1><h2>{props.children}</h2></>);
+    }
+    export default FirstComponent;
+
+##### Default PROPS #####
+pass the key values as an obj -> defaultProps
+
+    FirstComponent.defaultProps={
+        message : 'Default message'
+    }
+
+or we can define as static propperty inside a class
+    class FirstComponent extends Component{
+        static defaultProps = {
+            message : 'Default message'
+        }
+        render(){
+        return (<><h1>{this.props.message}</h1><h2>{this.props.children}</h2></>);
+        }
+    }
+
+setting the typeof props using PropTypes, defining required fields
+
+    import {PropTypes} from 'prop-types';
+
+    class FirstComponent extends Component{
+        static defaultProps = {
+            message : 'Default message'
+        }
+        render(){
+            return (<><h1>{this.props.message} {this.props.second}</h1><h2>{this.props.children}</h2></>);
+        }
+    }
+    FirstComponent.propTypes = {
+        second: PropTypes.number.isRequired
+    }
+
+##### state #####
+props -> from outside : parent -> child ,  they are immutable
+state -> within the comp,  they are mutable
+
+##### events #####
+in react all the reserved methods like render(){}, constructor(){} will have access to this but custom methods will not have the scope of this.
+Hence we need to ivoke the custom methods by setting the scope of this.
+
+    render(){
+        return (<>
+            <h1>{this.state.title}</h1>
+            <button onClick={this.clickHandler.bind(this)}>Click Here</button>
+        </>)
+    }
+
+when we call the custom clickHandler we need to bind the scope of 'this' to change the state of comp
+    clickHandler(){
+        this.setState({
+            title: 'App title changed'
+        })
+    }
+
+    <button onClick={this.clickHandler.bind(this)}>Click Here</button>
+    <button onClick={() => this.clickHandler()}>Click Here</button>
+
+more efficient way is to bind the contxt of 'this' in the constructor() since render will be invoked multiples times
+and setting the context everytime is not efficient.
+
+    constructor(){
+        super();
+        this.state = {
+            title: 'App title from 2nd Comp'
+        }
+        this.clickHandler = this.clickHandler.bind(this);
+    }
+    <button onClick={this.clickHandler}>Click Here</button>
+
+##### Achieve 2 way binding in React #####
+
+    constructor(){
+        super();
+        this.state = {
+            title: 'App title from 2nd Comp',
+            power: 9
+        }
+        this.clickHandler = this.clickHandler.bind(this);
+        this.changeHandler = this.changeHandler.bind(this);
+    }
+
+    changeHandler(evt){
+        this.setState({
+            power: evt.target.value
+        })
+    }
+
+    <h1>{this.state.title} | {this.state.power}</h1>
+    <input value={this.state.power} onChange={this.changeHandler} type="range" max="10" min="0"></input>
+            
+bind the value of <input> to {this.state.power}, use onChange event to update the state
+
+******************************************************************************************************
+##### FORMS ##### (step2-forms)
 
 
 
+******************************************************************************************************
+##### ROUTING ##### (step3-routing)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+******************************************************************************************************
+##### EVENTS ##### (secondapp)
+event propagation from child to parent using props.
