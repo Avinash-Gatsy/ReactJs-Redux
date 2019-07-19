@@ -1,0 +1,52 @@
+{
+    "herolist" : [
+        {
+            "sl": 1,
+            "title": "Batman",
+            "gender": "male",
+            "firstname": "Bruce",
+            "lastname": "Wayne",
+            "city": "Gotham"
+        },
+        {
+            "sl": 2,
+            "title": "Superman",
+            "gender": "male",
+            "firstname": "Clark",
+            "lastname": "Kent",
+            "city": "Metropolis"
+        },
+        {
+            "sl": 3,
+            "title": "Ironman",
+            "gender": "male",
+            "firstname": "Tony",
+            "lastname": "Stark",
+            "city": "New York"
+        },
+        {
+            "sl": 4,
+            "title": "Phantom",
+            "gender": "male",
+            "firstname": "Kit",
+            "lastname": "Walker",
+            "city": "Bhangala"
+        },
+        {
+            "sl": 5,
+            "title": "Spiderman",
+            "gender": "male",
+            "firstname": "Peter",
+            "lastname": "Parker",
+            "city": "New York"
+        },
+        {
+            "sl": 6,
+            "title": "Wonder Women",
+            "gender": "female",
+            "firstname": "Princess",
+            "lastname": "Diana",
+            "city": "Amazon"
+        }
+    ]
+}
